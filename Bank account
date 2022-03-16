@@ -1,0 +1,23 @@
+class Money:
+  def __init__(self,dollars,cents):
+    self.total_cents=dollars*100+cents
+  @property
+  def dollars(self):
+    return self.total_cents//100
+  @dollars.setter
+  def dollars(self,d):
+    if isinstance(d,int) and d>=0:
+      self.total_cents=self.total_cents-self.total_cents//100*100+d*100
+    else:
+      print('Error dollars')
+  @property
+  def cents(self):
+    return self.total_cents%100
+  @cents.setter
+  def cents(self,c):
+    if isinstance(c,int) and 0<=c<100:
+     self.total_cents=self.total_cents//100*100+c
+    else:
+      print('Error cents')
+  def __str__(self):
+    return f'Ваше состояние составляет {self.total_cents//100} долларов {self.total_cents%100} центов'
